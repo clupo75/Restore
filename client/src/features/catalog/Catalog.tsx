@@ -1,16 +1,22 @@
+import { useEffect, useState } from "react";
 import type { Product } from "../../app/models/product"
 import ProductList from "./ProductList";
 
-// Creating the signature types for the incoming props
-type Props = {
-  products: Product[];
-}
+export default function Catalog() {
+  const [products, setProducts] = useState<Product[]>([]);
 
-// use prop destructuring for clarity => {products, addProduct}: Props
-export default function Catalog({products}: Props) {
+  // when the dependencies change the use effect runs
+  // otherwise it runs only once when the component mounts
+  // calls the products api and sets the initial products object
+  useEffect(() => {
+    fetch("https://localhost:5001/api/products")
+      .then(response => response.json())
+      .then(data => setProducts(data))
+  }, [])
+
   return (
     <>
-      <ProductList products={products}/>
+      <ProductList products={products} />
     </>
   )
 }

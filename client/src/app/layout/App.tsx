@@ -1,11 +1,9 @@
-import { useEffect, useState } from "react"
-import type { Product } from "../models/product"
-import Catalog from "../../features/catalog/Catalog"
+import { useState } from "react"
 import NavBar from "./NavBar"
 import { Box, Container, createTheme, CssBaseline, ThemeProvider } from "@mui/material"
+import { Outlet } from "react-router-dom";
 
 function App() {
-  const [products, setProducts] = useState<Product[]>([]);
   const [darkMode, setDarkMode] = useState(false);
 
   const paletteType = darkMode ? 'dark' : 'light'
@@ -23,15 +21,6 @@ function App() {
     setDarkMode(!darkMode);
   }
 
-  // when the dependencies change the use effect runs
-  // otherwise it runs only once when the component mounts
-  // calls the products api and sets the initial products object
-  useEffect(() => {
-    fetch("https://localhost:5001/api/products")
-      .then(response => response.json())
-      .then(data => setProducts(data))
-  }, [])
-
 
   return (
     <ThemeProvider theme={theme}>
@@ -39,13 +28,15 @@ function App() {
       <NavBar darkMode={darkMode} toggleDarkMode={toggleDarkMode}></NavBar>
       <Box sx={{
         minHeight: '100vh',
-        background: darkMode 
-          ? 'radial-gradient(circle, #1e3aBa, #111B27)' 
-          : 'radial-gradient(circle, #baecf9, #f0f9ff)' ,
+        background: darkMode
+          ? 'radial-gradient(circle, #1e3aBa, #111B27)'
+          : 'radial-gradient(circle, #baecf9, #f0f9ff)',
         py: 6
       }}>
         <Container maxWidth="xl" sx={{ mt: 8 }}>
-          <Catalog products={products} />
+          {/* The Outlet component is a placeholder for the child routes defined in Routes.tsx */}
+          {/* This is where the Catalog, HomePage, AboutPage, ContactPage will be rendered */}
+          <Outlet />
         </Container>
       </Box>
     </ThemeProvider>
