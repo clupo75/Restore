@@ -9,12 +9,15 @@ import { RouterProvider } from 'react-router-dom';
 import { router } from './app/routes/Routes.tsx';
 import { Provider } from 'react-redux';
 import { store } from './app/store/store.ts';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     {/* Apply the redux store to the application */}
     <Provider store={store}>
+      <ToastContainer position="bottom-right" hideProgressBar theme='colored' />
       {/* Getting the App and other page components to load from the Routes.tsx */}
       <RouterProvider router={router} />
     </Provider>

@@ -1,18 +1,15 @@
 using API.Data;
 using API.Entities;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
     // https://localhost:5001/api/products
-    [Route("api/[controller]")]
-    [ApiController]
     // using the primary constructor for dependency injection
     // Whena new instance of the ProductsController is created, which
     // happens when an HTTP request occurs, it instantiates a new instance of the StoreContext 
-    public class ProductsController(StoreContext context) : ControllerBase
+    public class ProductsController(StoreContext context) : BaseApiController
     {
         // setting our API calls to async due to network traffic
         [HttpGet]

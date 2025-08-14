@@ -31,6 +31,7 @@ const navStyles = {
 export default function NavBar() {
   // get the loading state from the Redux store
   const { isLoading, darkMode } = useAppSelector(state => state.ui);
+  // use the custom dispatch hook to dispatch actions
   const dispatch = useAppDispatch()
 
   return (
