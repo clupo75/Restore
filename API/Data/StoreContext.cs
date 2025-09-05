@@ -9,5 +9,7 @@ namespace API.Data;
 public class StoreContext(DbContextOptions options) : DbContext(options)
 {
     // Takes our Entities C# code and translates it to SQL commands to query our Db
-    public DbSet<Product> Products { get; set; }
+    public required DbSet<Product> Products { get; set; }
+
+    public required DbSet<Basket> Baskets { get; set; }
 }

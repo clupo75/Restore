@@ -7,8 +7,10 @@ import { startLoading, stopLoading } from "../layout/uiSlice";
 import { toast } from "react-toastify";
 import { router } from "../routes/Routes";
 
+// credentials: 'include' is needed to send cookies with requests
 const customBaseQuery = fetchBaseQuery({
   baseUrl: "https://localhost:5001/api",
+  credentials: "include",
 });
 
 // set the type for the error response
